@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-        <!-- فونت فارسی زیبا - شبنم -->
-<link rel="preconnect" href="https://cdn.fontcdn.ir">
-<link href="https://cdn.fontcdn.ir/font-face/IRANSans" rel="stylesheet">
-<body class="antialiased selection:bg-amber-100 selection:text-amber-900">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نکسوس هوش مصنوعی استعداد | شکار مدیران اجرایی با رویکرد پیشگام</title>
@@ -12,28 +8,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js for data visualization -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Google Fonts: Inter (Sans-serif for body) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Vazirmatn (Farsi Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-
-        <style>
-  body {
-    font-family: 'Vazir', 'Tahoma', sans-serif !important;
-  }
-</style>
-        /* Base styles - Applying suitable font for Farsi */
+        /* Base styles */
         body {
-            font-family: 'Inter', sans-serif; /* Fallback for a clean look */
-            /* You might want to use a specific Farsi font like Vazirmatn for a real project */
-            background-color: #FAFAF9; /* Stone 50 */
-            color: #1C1917; /* Stone 900 */
+            font-family: 'Vazirmatn', sans-serif; 
+            background-color: #F9FAFB; /* Gray 50 */
+            color: #111827; /* Gray 900 */
         }
         h1, h2, h3, h4, .serif-font {
-            font-family: 'Inter', sans-serif; /* Keeping Inter for a consistent, modern look */
-            font-weight: 700;
+            font-family: 'Vazirmatn', sans-serif; 
+            font-weight: 800;
         }
-        /* Chart container styling for responsiveness */
+        /* Chart container */
         .chart-container {
             position: relative;
             width: 100%;
@@ -42,13 +33,13 @@
             height: 350px;
             max-height: 400px;
         }
-        /* Glass panel for navigation */
+        /* Glass panel */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.5);
         }
-        /* Navigation link hover underline effect */
+        /* Navigation link */
         .nav-link {
             position: relative;
         }
@@ -56,142 +47,308 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 1px;
-            bottom: -2px;
-            right: 0; /* Adjusted for RTL */
-            background-color: #B45309; /* Amber 700 */
+            height: 3px;
+            bottom: -6px;
+            right: 0; 
+            background-color: #8B5CF6; /* Violet 500 - New Vibrant Primary */
             transition: width 0.3s;
         }
         .nav-link:hover::after {
             width: 100%;
         }
-        /* Hero Background with Overlay */
-        .hero-bg {
-            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(250, 250, 249, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        
+        /* --- NEW HERO STYLES (Modern & Abstract) --- */
+        .hero-bg-new {
+            background-color: #111827; /* Dark background */
+            position: relative;
+            overflow: hidden;
         }
-        /* Custom modal styles (for alert replacement) */
+        /* Abstract Grid Pattern Overlay */
+        .hero-bg-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at center, rgba(139, 92, 246, 0.1), transparent 70%), 
+                              url('https://www.transparenttextures.com/patterns/micro-carbon.png');
+            opacity: 0.6;
+        }
+        /* Gradient Glow Effect */
+        .hero-bg-new::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at 100% 0%, rgba(139, 92, 246, 0.25) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Differentiators Section Background - Changed to light */
+        .differentiators-bg {
+            background: #F9FAFB; /* Gray 50 */
+        }
+
+        /* Custom Modal */
         .custom-modal {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.6);
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(4px);
         }
         .modal-content {
             background-color: #fff;
-            padding: 24px;
-            border-radius: 8px;
+            padding: 32px;
+            border-radius: 16px; /* Slightly larger radius */
             width: 90%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 450px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+        
+        /* Active Step Card Style */
+        .step-active {
+            transform: scale(1.03) translateY(-2px);
+            /* New Shadow: Violet + Cyan */
+            box-shadow: 0 15px 30px -5px rgba(139, 92, 246, 0.4), 0 5px 10px -5px rgba(6, 182, 212, 0.15); 
+            border-color: #8B5CF6 !important; /* Violet 500 */
+        }
+        /* Email Viewer - PROFESSIONAL LOOK */
+        .email-viewer {
+            background-color: #ffffff;
+            /* Enhanced Shadow for Mailbox Feel */
+            box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05); 
+        }
+        /* Gradient Button Effect - Primary CTA */
+        .btn-vibrant {
+            background-image: linear-gradient(to right, #8B5CF6 0%, #3B82F6 100%); /* Violet to Blue */
+            transition: all 0.3s ease;
+        }
+        .btn-vibrant:hover {
+            background-image: linear-gradient(to right, #06B6D4 0%, #3B82F6 100%); /* Cyan to Blue */
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.6);
+        }
+        /* Contact item hover effect */
+        .contact-item {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px -5px rgba(139, 92, 246, 0.5); /* Stronger hover shadow */
+        }
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top right, rgba(139, 92, 246, 0.1), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .contact-item:hover::before {
+            opacity: 1;
         }
     </style>
 </head>
+<body class="antialiased selection:bg-cyan-200 selection:text-violet-800">
 
-    <!-- Custom Modal for Alerts (REPLACES alert()) -->
+    <!-- Custom Modal -->
     <div id="customModal" class="custom-modal">
         <div class="modal-content">
-            <h3 id="modalTitle" class="text-xl font-bold mb-3 text-stone-900">اقدام مورد نیاز</h3>
-            <p id="modalMessage" class="text-stone-600 mb-6"></p>
-            <button onclick="closeModal()" class="w-full bg-amber-700 text-white px-5 py-2 rounded-sm font-medium hover:bg-amber-800 transition-colors">بستن</button>
+            <div class="mb-4 text-violet-600 text-4xl">ℹ️</div>
+            <h3 id="modalTitle" class="text-xl font-bold mb-3 text-gray-900">عنوان پیام</h3>
+            <p id="modalMessage" class="text-gray-600 mb-8 leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full bg-violet-600 text-white px-5 py-3 rounded-xl font-medium hover:bg-cyan-500 transition-colors shadow-md">متوجه شدم</button>
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-panel">
+    <nav class="fixed top-0 w-full z-50 glass-panel shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-20">
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="serif-font text-2xl font-bold text-stone-900 tracking-tight">نکسوس هوش مصنوعی</span>
+                    <span class="serif-font text-2xl font-black text-gray-900 tracking-tight">نکسوس <span class="text-cyan-500">هوش مصنوعی</span></span>
                 </div>
-                <div class="hidden md:flex space-x-8" dir="rtl">
-                    <button onclick="scrollToSection('challenge')" class="nav-link text-stone-600 hover:text-stone-900 text-sm font-medium transition-colors ml-8">چالش ما</button>
-                    <button onclick="scrollToSection('solution')" class="nav-link text-stone-600 hover:text-stone-900 text-sm font-medium transition-colors ml-8">راهکار ما</button>
-                    <button onclick="scrollToSection('process')" class="nav-link text-stone-600 hover:text-stone-900 text-sm font-medium transition-colors ml-8">فرآیند</button>
-                    <button onclick="scrollToSection('results')" class="nav-link text-stone-600 hover:text-stone-900 text-sm font-medium transition-colors">نتایج</button>
+                <div class="hidden md:flex space-x-8 items-center" dir="rtl">
+                    <button onclick="scrollToSection('challenge')" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-bold transition-colors ml-8">چالش‌ها</button>
+                    <button onclick="scrollToSection('value_proposition')" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-bold transition-colors ml-8">ارزش پیشنهادی</button> 
+                    <button onclick="scrollToSection('process')" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-bold transition-colors ml-8">فرآیند</button>
+                    <button onclick="scrollToSection('contact_example')" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-bold transition-colors ml-8">نمونه پیام</button>
+                    <button onclick="scrollToSection('results')" class="nav-link text-gray-600 hover:text-gray-900 text-sm font-bold transition-colors">نتایج</button>
                 </div>
                 <div>
-                    <button onclick="scrollToSection('contact')" class="bg-stone-900 text-white px-5 py-2 rounded-sm text-sm font-medium hover:bg-stone-800 transition-colors shadow-lg">رزرو جلسه استراتژی</button>
+                    <!-- Primary CTA in Nav - Changed to Contact Link -->
+                    <a href="#contact" class="bg-violet-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-cyan-500 transition-all shadow-lg transform hover:-translate-y-0.5">تماس مستقیم</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden hero-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-block px-3 py-1 mb-6 border border-amber-200 bg-amber-50 rounded-full shadow-sm">
-                <span class="text-amber-800 text-xs font-semibold tracking-wider uppercase">هوش استعدادهای اجرایی</span>
+    <!-- SECTION 1: Hero (Completely Redesigned for maximum impact and focus) -->
+    <section class="hero-bg-new pt-36 pb-32 lg:pt-52 lg:pb-44 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center">
+            
+            <!-- Small Tagline -->
+            <div class="inline-block px-4 py-1.5 mb-8 border border-cyan-500 bg-cyan-900/40 backdrop-blur-sm rounded-full shadow-lg">
+                <span class="text-cyan-300 text-xs font-bold tracking-widest uppercase">شکار استعدادهای اجرایی با هوش مصنوعی</span>
             </div>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-900 leading-tight mb-6 serif-font max-w-4xl mx-auto">
-                استعدادهای نخبه‌ای که نیاز دارید، درخواست نمی‌دهند. <br/><span class="text-stone-500 italic">آن‌ها برای سیستم‌های فعلی شما نامرئی هستند.</span>
+            
+            <!-- Main Headline - Bold and Focused -->
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-8 serif-font max-w-5xl mx-auto">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-cyan-400">نیروهای خبره پنهان</span> <br/>تنها با یک کلیک فاصله دارند.
             </h1>
-            <p class="mt-4 text-xl text-stone-700 max-w-2xl mx-auto mb-10 font-light">
-                تخصیص بودجه برای پایگاه‌های داده منسوخ را متوقف کنید. نکسوس هوش مصنوعی استعداد به‌صورت پیشگام، ۸۰٪ از متخصصان سطح بالا که کاندیداهای غیرفعال هستند را هدف قرار می‌دهد.
+            
+            <!-- Sub-headline / Core Value Proposition -->
+            <p class="mt-6 text-xl text-gray-300 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
+                ۸۰٪ از متخصصان سطح بالا هرگز رزومه ارسال نمی‌کنند. نکسوس هوش مصنوعی، آن‌ها را قبل از اینکه حتی به جابه‌جایی فکر کنند، پیدا کرده و برای شما جذب می‌کند.
             </p>
-            <div class="flex justify-center gap-4 flex-col sm:flex-row">
-                <button onclick="scrollToSection('challenge')" class="border border-stone-300 bg-white/80 backdrop-blur text-stone-700 px-8 py-3 rounded-sm font-medium hover:bg-stone-50 transition-colors shadow-sm">
-                    چرا استخدام شکست می‌خورد
-                </button>
-                <button onclick="scrollToSection('contact')" class="bg-amber-700 text-white px-8 py-3 rounded-sm font-medium hover:bg-amber-800 transition-colors shadow-md">
-                    دسترسی به استعدادهای پنهان
-                </button>
+            
+            <!-- Single Primary CTA (Focus) - Changed to Contact Link -->
+            <div class="flex justify-center">
+                <a href="#contact" class="btn-vibrant text-white px-10 py-5 rounded-xl font-bold text-lg transition-all shadow-2xl shadow-violet-500/50 transform hover:scale-105">
+                    مشاهده اطلاعات تماس مستقیم
+                </a>
+            </div>
+            
+            <!-- Trust and Scarcity -->
+            <div class="mt-16 flex justify-center items-center text-gray-500 text-sm gap-8">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-check-circle text-cyan-400 ml-2"></i>
+                    <span class="font-medium">سرعت جذب ۳ برابر بیشتر</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-lock text-violet-400 ml-2"></i>
+                    <span class="font-medium">انحصاری‌ترین بانک استعداد ایران</span>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- SECTION 2: The Bottleneck (Challenge) -->
-    <section id="challenge" class="py-20 bg-white">
+    <section id="challenge" class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
                 
-                <!-- Text Content -->
-                <div>
-                    <h2 class="text-3xl font-bold text-stone-900 mb-6 serif-font">تنگنای بزرگ</h2>
-                    <p class="text-lg text-stone-600 mb-6 leading-relaxed">
-                        مدیران منابع انسانی در حال جنگیدن در نبرد دیروز هستند. متخصصانی که مزیت رقابتی ایجاد می‌کنند—دانشمندان داده، معماران ارشد، مدیران ارشد مالی استراتژیک—رزومه‌های خود را در سایت‌های کاریابی آپلود نمی‌کنند.
-                    </p>
-                    
-                    <div class="space-y-6">
-                        <div class="p-4 border-r-4 border-amber-600 bg-stone-50 border-l-0" dir="rtl">
-                            <h4 class="font-bold text-stone-900 mb-1">معضل کلمات کلیدی</h4>
-                            <p class="text-sm text-stone-600">فیلترهای سیستم‌های ردیابی متقاضی (ATS) به دلیل جزئیات معنایی، پروفایل‌های باارزش را رد می‌کنند. شما استعدادهای استثنایی را از دست می‌دهید.</p>
+                <!-- Visualization (Sticky Left Column) -->
+                <div class="lg:col-span-5 lg:sticky lg:top-32 order-1 lg:order-none">
+                    <div class="bg-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100">
+                        <div class="text-center mb-8">
+                            <h3 class="text-2xl font-bold text-gray-800">واقعیت بازار استعداد</h3>
+                            <p class="text-sm text-gray-500 mt-2">توزیع در دسترس بودن نیروهای متخصص</p>
                         </div>
-                        <div class="p-4 border-r-4 border-stone-300 bg-white hover:bg-stone-50 transition-colors border-l-0" dir="rtl">
-                            <h4 class="font-bold text-stone-900 mb-1">هزینه عدم قطعیت</h4>
-                            <p class="text-sm text-stone-600">ماه‌ها جستجوی دستی که منجر به لیست‌های مختصری بر اساس داده‌های خوداظهاری و منسوخ می‌شود.</p>
+                        
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
                         </div>
-                        <div class="p-4 border-r-4 border-stone-300 bg-white hover:bg-stone-50 transition-colors border-l-0" dir="rtl">
-                            <h4 class="font-bold text-stone-900 mb-1">شکاف استعدادهای غیرفعال</h4>
-                            <p class="text-sm text-stone-600">منابع‌یابی سنتی نسبت به ۸۰٪ از کارشناسان شاغل و با ارزش، کور است.</p>
+
+                        <div class="mt-8 text-center bg-white p-5 rounded-xl border border-violet-100 shadow-md">
+                            <p class="text-sm text-gray-700 font-medium leading-relaxed">
+                                <span class="text-violet-600 font-bold block mb-1 text-lg">هشدار استراتژیک:</span> 
+                                سیستم‌های سنتی شما تنها ۲۰٪ از بازار (قله کوه یخ) را می‌بینند و ۸۰٪ فرصت‌ها را از دست می‌دهند.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Visualization Column -->
-                <div class="bg-stone-50 rounded-lg p-8 shadow-inner border border-stone-100">
-                    <div class="text-center mb-6">
-                        <h3 class="text-lg font-semibold text-stone-800">واقعیت بازار استعداد</h3>
-                        <p class="text-xs text-stone-500">توزیع در دسترس بودن در بازار</p>
-                    </div>
+                <!-- Text Content: 8 Cards Grid (Right Column) -->
+                <div class="lg:col-span-7">
+                    <!-- New Text Added Here (UPDATED HERE) -->
+                    <p class="text-xl font-bold text-violet-600 mb-2">نیروهای خبره با روش‌های سنتی پیدا نمی‌شوند؛</p>
+                    <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 mb-6 serif-font leading-tight">شما باید آن‌ها را کشف کنید.</h2>
+                    <p class="text-lg text-gray-600 mb-10 leading-loose">
+                        مدیران منابع انسانی در حال مبارزه با ابزارهای قدیمی برای بازاری جدید هستند. در اینجا ۸ دلیل اصلی شکست فرآیندهای سنتی در جذب استعدادهای برتر آورده شده است:
+                    </p>
                     
-                    <!-- Chart Container -->
-                    <div class="chart-container">
-                        <canvas id="marketChart"></canvas>
-                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Card 1 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-user-slash"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">عدم ارسال رزومه توسط حرفه‌ای‌ها</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">افراد با سابقه بالا معمولاً رزومه ارسال نمی‌کنند؛ آن‌ها منتظر پیشنهاد مناسب هستند و با روش‌های معمول به دنبال جابه‌جایی نیستند.</p>
+                        </div>
 
-                    <div class="mt-6 text-center">
-                        <p class="text-sm text-stone-600 italic">
-                            "احساس می‌کنم در حال جستجوی سوزنی در انبوهی از سوزن‌ها هستم."
-                        </p>
+                        <!-- Card 2 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-filter"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">تمرکز غلط بر «متقاضیان فعال»</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">سیستم‌های سنتی فقط متقاضیان فعال را می‌بینند. افرادی که صرفاً تمایل به تغییر دارند اما جست‌وجو را آغاز نکرده‌اند، کاملاً نادیده گرفته می‌شوند.</p>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-database"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">داده‌های قدیمی و منسوخ</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">بانک رزومه‌ها قدیمی و فاقد داده‌های به‌روز درباره موقعیت فعلی، پروژه‌های اخیر و دستاوردهای جدید افراد هستند.</p>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-file-alt"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">رزومه‌های سطحی</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">رزومه‌ها معمولاً اطلاعات سطحی دارند و مهارت‌های نرم، جزئیات پروژه‌های واقعی و تجربه‌های خاص در آن‌ها ذکر نشده است.</p>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-gem"></i></span>
+                            <h4 class="font-bold text-gray-900 text-sm">عدم دسترسی به متخصصان نادر</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">دسترسی به رزومه‌های متخصصان کمیاب مانند Data Scientist، DevOps و AI Engineer در پلتفرم‌های عمومی بسیار محدود است.</p>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-clock"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">تطبیق زمان‌بر و ناکارآمد (ATS)</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">سیستم‌های ATS سنتی فقط بر اساس کلمات کلیدی کار می‌کنند، نه درک واقعی مهارت. این فرایند ذهنی و زمان‌بر است.</p>
+                        </div>
+
+                        <!-- Card 7 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-fire"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">رقابت شدید برای جذب</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">رقابت شدید میان شرکت‌ها برای جذب افراد کلیدی وجود دارد و روش‌های کند سنتی باعث از دست دادن فرصت‌ها می‌شوند.</p>
+                        </div>
+
+                        <!-- Card 8 -->
+                        <div class="p-5 bg-white rounded-xl border border-gray-200 hover:border-violet-500 hover:shadow-lg transition-all duration-300 group">
+                            <div class="flex items-center mb-3">
+                                <span class="w-8 h-8 rounded-full bg-gray-100 text-gray-600 flex items-center justify-center ml-3 group-hover:bg-violet-100 group-hover:text-violet-600 transition-colors"><i class="fa-solid fa-money-bill-wave"></i></span>
+                                <h4 class="font-bold text-gray-900 text-sm">هزینه بالا، نتیجه نامشخص</h4>
+                            </div>
+                            <p class="text-xs text-gray-500 leading-relaxed">هزینه بالای آگهی و جذب سنتی بدون احتمال نتیجه مناسب برای مدیران ارشد، با انتظارات مدیران سازمان همخوانی ندارد.</p>
+                        </div>
+
                     </div>
                 </div>
 
@@ -199,249 +356,379 @@
         </div>
     </section>
 
-    <!-- SECTION 3: The Solution -->
-    <section id="solution" class="py-20 bg-stone-900 text-stone-100">
+    <!-- SECTION 3: VALUE PROPOSITION - DIFFERENTIATORS -->
+    <section id="value_proposition" class="py-24 differentiators-bg text-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-amber-500 font-semibold tracking-wide uppercase text-sm">یک پیشرفت بزرگ</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 serif-font">هدف‌گذاری پیشگامانه استعداد، با قدرت هوش مصنوعی</h2>
-                <p class="mt-4 text-stone-400 max-w-2xl mx-auto">
-                    ما استراتژی شما را از استخدام واکنشی به هدف‌گذاری دقیق تغییر می‌دهیم. مدل‌های ما ردپای دیجیتال را تجزیه و تحلیل می‌کنند، نه فقط رزومه‌ها را.
+            <div class="text-center mb-20">
+                <span class="text-cyan-500 font-bold tracking-widest uppercase text-xs">ارزش پیشنهادی نکسوس</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-3 serif-font text-gray-900 leading-tight">۴ ستون تمایز: کشف استعدادهای پنهان</h2>
+                <p class="mt-6 text-gray-600 max-w-2xl mx-auto text-lg">
+                    سیستم ما فراتر از رزومه‌ها می‌رود و با تحلیل ردپای دیجیتال، بهترین‌ها را قبل از رقبا شکار می‌کند.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- 2-Column Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                
                 <!-- Card 1 -->
-                <div class="group bg-stone-800 p-8 rounded-sm border border-stone-700 hover:border-amber-600 transition-all duration-300 cursor-pointer" onclick="highlightCard(this)">
-                    <div class="h-12 w-12 bg-stone-700 rounded-full flex items-center justify-center mb-6 group-hover:bg-amber-900 transition-colors">
-                        <span class="text-2xl">🔍</span>
+                <div class="p-8 rounded-2xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden bg-white">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-violet-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-violet-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-violet-500 transition-colors">
+                            <span class="text-2xl text-violet-600 group-hover:text-white">🎯</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-violet-600 transition-colors">۱. دسترسی به متخصصان غیرفعال</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            شناسایی افراد باتجربه و تأثیرگذار با تحلیل ردپای دیجیتال، حتی اگر فعالانه رزومه ارسال نکرده باشند. دسترسی به لایه پنهان بازار.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">تأیید مهارت‌های واقعی</h3>
-                    <p class="text-stone-400 text-sm leading-relaxed group-hover:text-stone-200">
-                        ما شبکه‌های حرفه‌ای، مخازن کد و نشریات را تحلیل می‌کنیم تا مهارت‌های قابل تأیید و مشارکت‌های واقعی در پروژه را استخراج کنیم و فراتر از کلمات پر زرق و برق، از مطابقت فنی اطمینان حاصل کنیم.
-                    </p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="group bg-stone-800 p-8 rounded-sm border border-stone-700 hover:border-amber-600 transition-all duration-300 cursor-pointer" onclick="highlightCard(this)">
-                    <div class="h-12 w-12 bg-stone-700 rounded-full flex items-center justify-center mb-6 group-hover:bg-amber-900 transition-colors">
-                        <span class="text-2xl">📈</span>
+                <div class="p-8 rounded-2xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden bg-white">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-violet-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-violet-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-violet-500 transition-colors">
+                            <span class="text-2xl text-violet-600 group-hover:text-white">🧭</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-violet-600 transition-colors">۲. تمرکز بر «تمایل به تغییر»</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            پیش‌بینی احتمال جابه‌جایی شغلی با بررسی رفتار و تغییرات پروفایل. اتصال شما به افرادی که در آستانه‌ی تصمیم‌گیری هستند.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">پیش‌بینی رفتاری</h3>
-                    <p class="text-stone-400 text-sm leading-relaxed group-hover:text-stone-200">
-                        هوش مصنوعی ما الگوهای ظریف مانند نقاط عطف شغلی و احتمال تغییر شغل را شناسایی می‌کند. ما کاندیداهایی را که آماده حرکت هستند، قبل از اینکه حتی درخواست دهند، تشخیص می‌دهیم.
-                    </p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="group bg-stone-800 p-8 rounded-sm border border-stone-700 hover:border-amber-600 transition-all duration-300 cursor-pointer" onclick="highlightCard(this)">
-                    <div class="h-12 w-12 bg-stone-700 rounded-full flex items-center justify-center mb-6 group-hover:bg-amber-900 transition-colors">
-                        <span class="text-2xl">🎯</span>
+                <div class="p-8 rounded-2xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden bg-white">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-violet-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-violet-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-violet-500 transition-colors">
+                            <span class="text-2xl text-violet-600 group-hover:text-white">🔄</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-violet-600 transition-colors">۳. بانک استعدادهای زنده</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            دسترسی همیشگی به آخرین موقعیت شغلی، مهارت‌ها و پروژه‌ها با به‌روزرسانی مداوم داده‌ها از منابع معتبر عمومی.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">لیست کوتاه هوشمند</h3>
-                    <p class="text-stone-400 text-sm leading-relaxed group-hover:text-stone-200">
-                        ما لیست‌های کوتاه با دقت بالا را با اولویت‌بندی مرتبط بودن و قصد فرد ارائه می‌دهیم. از مصاحبه با کاندیداهای فاقد صلاحیت دست بردارید و استعدادهای سطح بالا را جذب کنید.
+                </div>
+
+                <!-- Card 4 -->
+                <div class="p-8 rounded-2xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-300 group relative overflow-hidden bg-white">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-violet-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-violet-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-violet-500 transition-colors">
+                            <span class="text-2xl text-violet-600 group-hover:text-white">🔍</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-gray-900 group-hover:text-violet-600 transition-colors">۴. تحلیل عمیق تجربه‌های واقعی</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            تحلیل سوابق واقعی فعالیت‌ها و مشارکت در پروژه‌ها به جای تکیه بر متن رزومه. شناخت «آنچه فرد واقعاً انجام داده است».
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: STRATEGIC IMPACT - Speed & ROI (REDESIGNED FOR CLARITY) -->
+    <section id="strategic_impact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-violet-600 font-bold tracking-wide uppercase text-sm">تأثیر ملموس و قابل اندازه‌گیری</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 serif-font mt-3">سرعت بی‌رقیب و بازگشت سرمایه تضمین‌شده</h2>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-3xl p-10 border-4 border-violet-100 shadow-2xl overflow-hidden relative">
+                <!-- Background visual element (abstract AI/Data) -->
+                <div class="absolute inset-0 opacity-10 bg-gradient-to-br from-violet-50 to-cyan-50"></div>
+                
+                <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <!-- Metric 1: Time to Hire -->
+                    <div class="border-b md:border-b-0 md:border-l border-gray-300 pb-8 md:pb-0 md:pl-10">
+                        <div class="flex items-center justify-center md:justify-start mb-4">
+                            <i class="fa-solid fa-tachometer-alt text-4xl text-cyan-500 ml-3"></i>
+                            <h3 class="text-2xl font-bold text-gray-900">۱. سرعت جذب</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm md:text-base text-center md:text-right">
+                            با تمرکز بر کاندیداهای آماده، زمان جذب نیروهای کلیدی را به شکل قابل توجهی کاهش می‌دهیم.
+                        </p>
+                        
+                        <div class="flex justify-center md:justify-start gap-6 items-center">
+                            <div class="text-center p-4 rounded-xl border-2 border-gray-300 bg-white shadow-md w-32">
+                                <div class="text-xs text-gray-500 mb-1">سنتی</div>
+                                <div class="font-extrabold text-gray-400 text-3xl">۹۰</div>
+                                <div class="text-xs text-gray-500">روز</div>
+                            </div>
+                            <i class="fa-solid fa-long-arrow-alt-left text-3xl text-violet-500"></i>
+                            <div class="text-center p-4 rounded-xl border-2 border-violet-500 bg-violet-50 shadow-lg w-32">
+                                <div class="text-xs text-violet-700 mb-1">نکسوس</div>
+                                <div class="font-extrabold text-violet-700 text-3xl">۲۱</div>
+                                <div class="text-xs text-violet-700">روز</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Metric 2: ROI and Success -->
+                    <div class="pt-8 md:pt-0 md:pr-10">
+                        <div class="flex items-center justify-center md:justify-start mb-4">
+                            <i class="fa-solid fa-chart-line text-4xl text-cyan-500 ml-3"></i>
+                            <h3 class="text-2xl font-bold text-gray-900">۲. بازگشت سرمایه</h3>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm md:text-base text-center md:text-right">
+                            دقت در هدف‌گذاری، منجر به حذف هزینه‌های اضافی و افزایش نرخ موفقیت استخدام می‌شود.
+                        </p>
+                        
+                        <div class="flex flex-col gap-4 text-sm font-medium">
+                            <div class="p-3 bg-cyan-100 rounded-lg border-l-4 border-cyan-500 flex justify-between items-center shadow-sm">
+                                <span class="text-cyan-800">نرخ موفقیت استخدام</span>
+                                <span class="font-extrabold text-cyan-800 text-lg">+۳۰٪</span>
+                            </div>
+                            <div class="p-3 bg-violet-100 rounded-lg border-l-4 border-violet-500 flex justify-between items-center shadow-sm">
+                                <span class="text-violet-800">هزینه آگهی‌های عمومی</span>
+                                <span class="font-extrabold text-violet-800 text-lg">حذف کامل</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="mt-12 text-center text-gray-500 text-sm max-w-2xl mx-auto">
+                    ما به جای بازی با سیستم‌های سنتی، با استراتژی مستقیم و داده‌محور، تضمین می‌کنیم که هر نقش کلیدی در سازمان شما با سرعت و دقت بیشتری تکمیل شود.
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- SECTION 5: The Process -->
+    <section id="process" class="py-24 bg-[#F9FAFB]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Header -->
+            <div class="mb-16 text-center">
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 serif-font">بازتعریف جذب استعداد با هوش مصنوعی</h2>
+                <div class="mt-6 max-w-3xl mx-auto">
+                    <p class="text-gray-600 text-lg leading-relaxed">
+                        «ما با استفاده از هوش مصنوعی، فرایند شناسایی، ارتباط و جذب استعدادهای برتر را بازتعریف کرده‌ایم.»
+                        <span class="block mt-2 font-medium text-cyan-700 bg-cyan-100 inline-block px-3 py-1 rounded-md border border-cyan-300">
+                            در این مدل، ما به جای انتظار برای ارسال رزومه، خودمان متخصص مناسب را پیدا می‌کنیم و به او پیام اختصاصی ارسال می‌کنیم.
+                        </span>
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- SECTION 4: The Process -->
-    <section id="process" class="py-20 bg-[#FAFAF9]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12">
-                <h2 class="text-3xl font-bold text-stone-900 serif-font">گردش کار عملیاتی</h2>
-                <p class="text-stone-600 mt-2">یک فرآیند قابل پیش‌بینی و مبتنی بر داده که برای دقت در استخدام مدیران طراحی شده است.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <!-- Navigation Buttons -->
-                <div class="md:col-span-4 space-y-2">
-                    <button onclick="setStep(1)" id="btn-step-1" class="w-full text-right px-6 py-4 rounded-lg bg-white border border-stone-200 shadow-sm hover:bg-stone-50 focus:outline-none transition-all duration-200 active-step-btn">
-                        <span class="text-xs font-bold text-amber-600 uppercase tracking-wider block mb-1">مرحله ۰۱</span>
-                        <span class="font-bold text-stone-900">تحلیل سازمانی</span>
-                    </button>
-                    <button onclick="setStep(2)" id="btn-step-2" class="w-full text-right px-6 py-4 rounded-lg bg-white border border-stone-200 shadow-sm hover:bg-stone-50 focus:outline-none transition-all duration-200">
-                        <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block mb-1">مرحله ۰۲</span>
-                        <span class="font-bold text-stone-900">شناسایی با هوش مصنوعی</span>
-                    </button>
-                    <button onclick="setStep(3)" id="btn-step-3" class="w-full text-right px-6 py-4 rounded-lg bg-white border border-stone-200 shadow-sm hover:bg-stone-50 focus:outline-none transition-all duration-200">
-                        <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block mb-1">مرحله ۰۳</span>
-                        <span class="font-bold text-stone-900">استخراج مسیر ارتباطی</span>
-                    </button>
-                    <button onclick="setStep(4)" id="btn-step-4" class="w-full text-right px-6 py-4 rounded-lg bg-white border border-stone-200 shadow-sm hover:bg-stone-50 focus:outline-none transition-all duration-200">
-                        <span class="text-xs font-bold text-stone-400 uppercase tracking-wider block mb-1">مرحله ۰۴</span>
-                        <span class="font-bold text-stone-900">کمپین ارتباط مستقیم</span>
-                    </button>
-                </div>
-
-                <!-- Content Panel (Dynamic content and image) -->
-                <div class="md:col-span-8 bg-white rounded-lg border border-stone-200 shadow-lg overflow-hidden flex flex-col md:flex-row">
-                     <!-- Image Side - Target for image update -->
-                     <div class="md:w-1/3 h-48 md:h-auto relative overflow-hidden bg-stone-100">
-                        <img id="step-image" src="" alt="مرحله فرآیند" class="absolute w-full h-full object-cover transition-opacity duration-500 opacity-90 hover:opacity-100">
-                     </div>
-                     
-                     <!-- Text Side - Target for text content update -->
-                     <div class="md:w-2/3 p-8 flex items-center relative">
-                         <div id="step-display" class="relative z-10 w-full">
-                            <!-- Content populated by JS: Initial content loads here on DOMContentLoaded -->
-                         </div>
-                         <!-- Background step number - Target for number update -->
-                         <div class="absolute left-4 bottom-0 opacity-5 text-8xl font-serif text-stone-900 select-none z-0" id="step-number-bg">۰۱</div>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: Sample Outreach (Email Simulation) -->
-    <section class="py-20 bg-stone-100 border-y border-stone-200">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl font-bold text-stone-900 serif-font">هنر نزدیک شدن</h2>
-                <p class="text-stone-600 mt-2">ببینید چگونه با پیام‌رسانی فوق‌العاده شخصی‌سازی‌شده، با کاندیداهای با ارزش ارتباط برقرار می‌کنیم.</p>
-            </div>
-
-            <!-- Email UI -->
-            <div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-stone-200">
-                <!-- Toolbar -->
-                <div class="bg-stone-50 border-b border-stone-200 px-6 py-3 flex items-center space-x-2" dir="ltr">
-                    <div class="flex space-x-1.5">
-                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                    </div>
-                    <div class="ml-6 text-xs text-stone-400 font-mono flex-grow" dir="rtl">پیش‌نمایش پیام: کاندیدای با تطابق بالا (+۹۵٪)</div>
-                </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 
-                <!-- Email Content -->
-                <div class="p-8 font-sans text-stone-800 leading-relaxed" dir="rtl">
-                    <div class="border-b border-stone-100 pb-4 mb-6 flex items-start justify-between">
-                        <div>
-                            <p class="text-sm text-stone-500 mb-1">موضوع: <span class="text-stone-900 font-medium">فرصت حسابداری ارشد سازمانی در گروه نوآوران سلامت</span></p>
-                            <div class="flex items-center gap-3">
-                                <!-- Avatar Image -->
-                                <div class="w-8 h-8 rounded-full bg-stone-200 overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" alt="Avatar" class="w-full h-full object-cover">
-                                </div>
-                                <div class="text-xs text-stone-500 text-right">
-                                    <span class="font-bold text-stone-800">جیمز اندرسون</span> &lt;j.anderson@nexus-ai.com&gt;
-                                    <br>به candidate@example.com
-                                </div>
+                <!-- Navigation (Vertical Connected Timeline) -->
+                <div class="lg:col-span-5 relative">
+                    <!-- Vertical Line -->
+                    <div class="absolute right-8 top-8 bottom-8 w-0.5 bg-gray-200 hidden lg:block"></div>
+
+                    <div class="space-y-6">
+                        <!-- Step 1 Button (Active state managed by JS) -->
+                        <button onclick="setStep(1)" id="btn-step-1" class="w-full relative group flex items-center text-right p-5 rounded-xl transition-all duration-300 bg-white border border-violet-500 shadow-xl ring-2 ring-violet-500/30 step-active">
+                            <div class="flex-shrink-0 ml-4 relative z-10">
+                                <div id="icon-step-1" class="w-14 h-14 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold text-2xl shadow-md transition-colors">۱</div>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 id="title-step-1" class="font-extrabold text-gray-900 text-xl transition-colors">۱. تحلیل نیاز سازمان</h4>
+                                <p class="text-sm text-gray-600 mt-1">شناخت عمیق فرهنگ و زیرساخت فنی</p>
+                            </div>
+                        </button>
+
+                        <!-- Step 2 Button -->
+                        <button onclick="setStep(2)" id="btn-step-2" class="w-full relative group flex items-center text-right p-5 rounded-xl transition-all duration-300 bg-gray-50 border border-transparent hover:bg-white hover:shadow-lg">
+                            <div class="flex-shrink-0 ml-4 relative z-10">
+                                <div id="icon-step-2" class="w-14 h-14 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-2xl transition-colors group-hover:bg-cyan-100 group-hover:text-cyan-700">۲</div>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 id="title-step-2" class="font-extrabold text-gray-500 text-xl group-hover:text-gray-800 transition-colors">۲. شناسایی هوشمند با AI</h4>
+                                <p class="text-sm text-gray-400 mt-1">تحلیل داده‌های واقعی و لینکدین</p>
+                            </div>
+                        </button>
+
+                        <!-- Step 3 Button -->
+                        <button onclick="setStep(3)" id="btn-step-3" class="w-full relative group flex items-center text-right p-5 rounded-xl transition-all duration-300 bg-gray-50 border border-transparent hover:bg-white hover:shadow-lg">
+                            <div class="flex-shrink-0 ml-4 relative z-10">
+                                <div id="icon-step-3" class="w-14 h-14 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-2xl transition-colors group-hover:bg-cyan-100 group-hover:text-cyan-700">۳</div>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 id="title-step-3" class="font-extrabold text-gray-500 text-xl group-hover:text-gray-800 transition-colors">۳. استخراج مسیرهای تماس اختصاصی</h4>
+                            <p class="text-sm text-gray-400 mt-1">دسترسی مستقیم (ایمیل، تلفن، کانکشن)</p>
+                            </div>
+                        </button>
+
+                        <!-- Step 4 Button -->
+                        <button onclick="setStep(4)" id="btn-step-4" class="w-full relative group flex items-center text-right p-5 rounded-xl transition-all duration-300 bg-gray-50 border border-transparent hover:bg-white hover:shadow-lg">
+                            <div class="flex-shrink-0 ml-4 relative z-10">
+                                <div id="icon-step-4" class="w-14 h-14 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-2xl transition-colors group-hover:bg-cyan-100 group-hover:text-cyan-700">۴</div>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 id="title-step-4" class="font-extrabold text-gray-500 text-xl group-hover:text-gray-800 transition-colors">۴. ارسال کمپین‌های سفارش شده</h4>
+                                <p class="text-sm text-gray-400 mt-1">پیام‌رسانی کاملاً شخصی‌سازی شده</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content Panel (Dynamic) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white/90 backdrop-blur-md rounded-3xl border border-gray-200 shadow-3xl overflow-hidden h-full min-h-[480px] flex flex-col relative group transition-all duration-500 hover:shadow-4xl">
+                        <!-- Dynamic Image - Changed to abstract/creative visual placeholders -->
+                        <div class="relative h-64 w-full overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent z-10"></div>
+                            <img id="step-image" src="" alt="Process Step" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute bottom-4 right-4 z-20">
+                                <span id="step-badge" class="bg-violet-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wide shadow-lg">مرحله اول</span>
                             </div>
                         </div>
-                        <span class="text-xs text-stone-400">امروز، ۱۰:۴۲ صبح</span>
+                        
+                        <!-- Content -->
+                        <div class="p-10 relative flex-grow">
+                            <div id="step-display" class="relative z-10 transition-opacity duration-300">
+                                <!-- Content populated by JS -->
+                            </div>
+                            <!-- Background Number (Stylized) -->
+                            <div class="absolute left-6 bottom-4 opacity-10 text-[10rem] font-black text-gray-900 select-none font-serif leading-none" id="step-number-bg">۰۱</div>
+                        </div>
                     </div>
-
-                    <p class="mb-4">نام کاندیدای گرامی،</p>
-                    
-                    <p class="mb-4">من از طرف <span class="font-semibold text-amber-700">نکسوس هوش مصنوعی استعداد</span> و به نمایندگی از تیم استخدام گروه نوآوران سلامت در مورد یک موقعیت محرمانه حسابداری ارشد سازمانی با شما تماس می‌گیرم.</p>
-                    
-                    <div class="bg-amber-50 border-r-2 border-amber-500 p-4 my-6 rounded-l-md border-l-0" dir="rtl">
-                        <p class="text-stone-700 text-sm italic">
-                            "تجربه گسترده شما در رهبری تیم‌های مدیریت مالی در سازمان‌های بزرگ بهداشت و درمان، به‌ویژه کار شما در مقیاس‌گذاری چارچوب‌های انطباق در طول چرخه اخیر ادغام و اکتساب (M&A) (همانطور که در پروفایل شما ذکر شده)، دقیقاً همان تخصص مورد نظر مشتری ماست."
-                        </p>
-                        <p class="text-xs text-amber-600 mt-2 font-semibold uppercase tracking-wider">تحلیل: تطابق عمیق محتوا</p>
-                    </div>
-
-                    <p class="mb-4">این نقش شامل مدیریت یک پرتفوی ۳ میلیارد دلاری و ارائه مشاوره مستقیم به مدیر ارشد مالی در مورد استراتژی‌های حیاتی توسعه است. بر اساس پیشرفت شغلی و رهبری پروژه اثبات‌شده شما، ما معتقدیم این فرصت صعودی مهمی است که کاملاً با حرکت استراتژیک بعدی شما هماهنگ است.</p>
-                    
-                    <p class="mb-6">آیا برای یک گفتگوی مختصر و محرمانه در هفته آینده تمایل دارید؟</p>
-
-                    <p class="text-stone-500">با احترام،<br>تیم نکسوس هوش مصنوعی</p>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- NEW SECTION 5.5: Gemini AI Tool -->
-    <section id="ai-tool" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-3xl font-bold text-stone-900 serif-font">ابزار تولید پیام شخصی‌سازی شده با هوش مصنوعی</h2>
-                <p class="text-stone-600 mt-2">از قدرت Gemini برای ساخت پاراگراف‌های دسترسی مستقیم با تأثیرگذاری بالا استفاده کنید. <span class="font-semibold text-amber-700">پیام شما باید متقاعدکننده باشد، نه عمومی.</span></p>
-            </div>
-
-            <div class="bg-stone-50 p-8 rounded-lg shadow-xl border border-stone-200">
-                <div class="mb-6">
-                    <label for="jobDesc" class="block text-sm font-medium text-stone-700 mb-2">شرح نقش (مثلاً: مدیر ارشد مالی)</label>
-                    <textarea id="jobDesc" rows="2" placeholder="مدیریت یک پرتفوی مالی ۲ میلیارد دلاری، رهبری تیم مالی و ارائه مشاوره استراتژیک به مدیرعامل..." class="w-full p-3 border border-stone-300 rounded-md focus:ring-amber-500 focus:border-amber-500 text-stone-800"></textarea>
-                </div>
-
-                <div class="mb-6">
-                    <label for="candidateExperience" class="block text-sm font-medium text-stone-700 mb-2">ردپای کلیدی کاندیدا (مثلاً: تجربه، مهارت‌ها)</label>
-                    <textarea id="candidateExperience" rows="2" placeholder="تجربه گسترده در ادغام و اکتساب (M&A) در بخش بهداشت و درمان، مقیاس‌گذاری چارچوب‌های انطباق، رهبری تیم‌های مدیریت مالی..." class="w-full p-3 border border-stone-300 rounded-md focus:ring-amber-500 focus:border-amber-500 text-stone-800"></textarea>
-                </div>
-
-                <button onclick="generatePersonalizedOutreach()" id="generateBtn" class="w-full bg-amber-700 text-white px-6 py-3 rounded-sm font-bold hover:bg-amber-800 transition-colors shadow-lg disabled:bg-stone-400 disabled:cursor-not-allowed">
-                    ✨ تولید پیام شخصی‌سازی شده
-                </button>
-
-                <div id="loadingIndicator" class="mt-6 text-center text-stone-500 hidden">
-                    <svg class="animate-spin h-5 w-5 text-amber-700 inline-block mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    درحال تحلیل و تولید پیام...
-                </div>
-
-                <div id="outreachOutput" class="mt-8 p-6 bg-white border-l-4 border-amber-600 rounded-lg shadow-inner hidden" dir="rtl">
-                    <h4 class="font-bold text-stone-900 mb-3 text-lg">پیام پیشنهادی نکسوس:</h4>
-                    <p id="outputText" class="text-stone-700 leading-loose italic"></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END NEW SECTION 5.5 -->
-
-
-    <!-- SECTION 6: Comparison (Results) -->
-    <section id="results" class="py-20 bg-[#FAFAF9]"> <!-- Changed bg to match top section for visual flow -->
+    <!-- SECTION 6: Personalized Outreach Example (MAILBOX VIEW) -->
+    <section id="contact_example" class="py-24 bg-gray-50 border-t border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-center text-stone-900 mb-12 serif-font">چرا نکسوس هوش مصنوعی برنده است</h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl lg:text-4xl font-extrabold text-gray-900 serif-font">قدرت پیام‌رسانی کاملاً شخصی</h2>
+                <p class="mt-4 text-xl font-medium text-violet-700 max-w-3xl mx-auto bg-violet-100/30 inline-block px-4 py-2 rounded-lg border border-violet-300">
+                    «این پیام‌ها کاملاً شخصی‌سازی‌شده هستند، بر اساس سوابق کاری و علایق واقعی هر فرد.»
+                </p>
+                <p class="text-gray-600 mt-6 max-w-4xl mx-auto">
+                    این پیام نمونه‌ای از نحوه ارتباط مستقیم نکسوس با کاندیداهای غیرفعال است. پیام‌ها بر اساس سوابق واقعی و نیازهای سازمان هدف نوشته می‌شوند.
+                </p>
+            </div>
+
+            <!-- Email Viewer Simulation (Redesigned) -->
+            <div class="email-viewer rounded-3xl max-w-3xl mx-auto overflow-hidden bg-white">
+                
+                <!-- Subject Header -->
+                <div class="p-6 border-b border-gray-100 bg-gray-50/70">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-extrabold text-gray-900 text-xl leading-relaxed">فرصت ارشد حسابداری شرکتی (تمرکز بر تحلیل استراتژیک) - مجموعه عبیدی</h3>
+                        <div class="text-gray-400 text-lg flex items-center space-x-4 pr-4">
+                            <!-- Favorite/Star Icon -->
+                            <i class="fa-regular fa-star hover:text-yellow-500 cursor-pointer transition-colors"></i> 
+                            <!-- More Options Icon -->
+                            <i class="fa-solid fa-ellipsis-v hover:text-gray-600 cursor-pointer transition-colors"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sender/Recipient Metadata -->
+                <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                    <div class="flex items-start">
+                        <!-- Profile Avatar -->
+                        <div class="w-12 h-12 rounded-full bg-violet-600 flex items-center justify-center text-white text-lg font-bold ml-4 flex-shrink-0 shadow-md">H</div>
+                        <div>
+                            <p class="font-bold text-gray-900 text-base">
+                                تیم جذب مجموعه هانتینو <span class="text-xs text-gray-400 font-normal">&lt;hr@huntino.com&gt;</span>
+                            </p>
+                            <p class="text-xs text-gray-600 mt-1">
+                                به: حسابدار ارشد عزیز <i class="fa-solid fa-angle-down mr-1 cursor-pointer"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500">
+                        <span class="ml-4">امروز، ۱۴:۳۰</span>
+                        <!-- Reply Button Icon -->
+                        <i class="fa-solid fa-reply text-lg hover:text-cyan-500 cursor-pointer transition-colors"></i>
+                    </div>
+                </div>
+                
+                <!-- Body -->
+                <div class="p-8 text-gray-700 leading-loose text-base">
+                    <p class="mb-4">
+                        ز تیم جذب مجموعه هانتینو برای یک پوزیشن ارشد حسابداری برای مجموعه عبیدی هستم. ما در حال جذب یک حسابدار شرکتی ارشد هستیم که تجربه‌ی قابل توجهی در مدیریت مالی سازمان‌های بزرگ در صنعت سلامت داشته باشد.
+                    </p>
+                    <p class="mb-4">
+                        تمرکز ما بر فردی است که فراتر از ثبت و گزارش مالی، در تحلیل استراتژیک داده‌های مالی و تصمیم‌سازی مدیریتی نقش فعال داشته باشد.
+                    </p>
+                    <p class="mb-2 font-extrabold text-gray-900">تجربه‌های مورد نظر ما شامل موارد زیر است:</p>
+                    <ul class="list-disc list-inside space-y-1 pr-6 mb-6 text-sm text-gray-700 bg-gray-50/50 p-4 rounded-lg border border-gray-100">
+                        <li>مدیریت پروژه‌های بهینه‌سازی ساختار مالیاتی و ارزش افزوده در سازمان‌های چند‌واحدی</li>
+                        <li>مشارکت در طراحی مدل بهای تمام‌شده محصول یا خدمات در محیط‌های پیچیده عملیاتی</li>
+                        <li>همکاری مستقیم با حسابرسان مستقل</li>
+                        <li>سابقه در تحلیل انحراف بودجه و پیش‌بینی جریان نقدی در سطح گروه شرکت‌ها</li>
+                    </ul>
+                    <p class="mb-6">
+                        <span class="font-bold text-violet-700">با توجه به سوابق ارزشمند شما در این حوزه،</span> در صورتی که به دنبال موقعیت همکاری جدید می باشید، با ما در ارتباط باشید تا درباره‌ی این فرصت و جزئیات بیشتر گفت‌وگو کنیم.
+                    </p>
+                    <p class="text-sm font-medium">با احترام،<br>تیم نکسوس جذب استعداد</p>
+                </div>
+                
+                <!-- Footer Actions Bar -->
+                <div class="p-6 bg-gray-50 border-t border-gray-100 flex justify-end">
+                    <div class="flex space-x-4" dir="rtl">
+                        <button onclick="viewCaseStudies()" class="bg-violet-600 text-white px-6 py-3 rounded-full font-bold hover:bg-violet-700 transition-colors shadow-lg flex items-center">
+                            <i class="fa-solid fa-reply ml-2"></i> پاسخ دادن
+                        </button>
+                        <button onclick="viewCaseStudies()" class="border border-gray-300 text-gray-700 bg-white px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors flex items-center">
+                            <i class="fa-solid fa-forward ml-2"></i> فوروارد
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 7: Comparison (Results) -->
+    <section id="results" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-16 serif-font">تفاوت را با اعداد بسنجید</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Table -->
-                <div class="overflow-x-auto shadow-sm rounded-lg border border-stone-200">
+                <div class="overflow-hidden shadow-2xl rounded-xl border border-gray-200">
                     <table class="w-full text-right border-collapse">
                         <thead>
                             <tr>
-                                <th class="py-4 px-6 bg-stone-50 text-stone-500 font-semibold text-sm uppercase tracking-wider border-b border-stone-200">وجه تمایز</th>
-                                <th class="py-4 px-6 bg-stone-50 text-stone-400 font-semibold text-sm uppercase tracking-wider border-b border-stone-200">سنتی</th>
-                                <th class="py-4 px-6 bg-amber-50 text-amber-800 font-semibold text-sm uppercase tracking-wider border-b border-amber-200">نکسوس هوش مصنوعی</th>
+                                <th class="py-5 px-6 bg-gray-100 text-gray-500 font-bold text-sm uppercase border-b border-gray-200">معیار</th>
+                                <th class="py-5 px-6 bg-gray-100 text-gray-400 font-bold text-sm uppercase border-b border-gray-200">روش سنتی</th>
+                                <th class="py-5 px-6 bg-violet-50 text-violet-800 font-bold text-sm uppercase border-b border-violet-200">نکسوس AI</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-stone-100">
-                            <tr class="hover:bg-stone-50 transition-colors">
-                                <td class="py-4 px-6 font-bold text-stone-900 text-sm">دسترسی به استعداد</td>
-                                <td class="py-4 px-6 text-stone-500 text-sm">۲۰٪ (فعال)</td>
-                                <td class="py-4 px-6 text-stone-900 font-medium bg-amber-50/30 text-sm">۸۰٪ (غیرفعال)</td>
+                        <tbody class="divide-y divide-gray-100 bg-white">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-6 font-bold text-gray-800 text-sm">دسترسی به استعداد</td>
+                                <td class="py-5 px-6 text-gray-500 text-sm">۲۰٪ (فقط فعال)</td>
+                                <td class="py-5 px-6 text-gray-900 font-bold bg-violet-50/50 text-sm">۸۰٪ (شامل پنهان)</td>
                             </tr>
-                            <tr class="hover:bg-stone-50 transition-colors">
-                                <td class="py-4 px-6 font-bold text-stone-900 text-sm">معیار تمرکز</td>
-                                <td class="py-4 px-6 text-stone-500 text-sm">حجم درخواست</td>
-                                <td class="py-4 px-6 text-stone-900 font-medium bg-amber-50/30 text-sm">سیگنال‌های قصد</td>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-6 font-bold text-gray-800 text-sm">معیار تمرکز</td>
+                                <td class="py-5 px-6 text-gray-500 text-sm">تعداد رزومه</td>
+                                <td class="py-5 px-6 text-gray-900 font-bold bg-violet-50/50 text-sm">سیگنال‌های قصد</td>
                             </tr>
-                            <tr class="hover:bg-stone-50 transition-colors">
-                                <td class="py-4 px-6 font-bold text-stone-900 text-sm">یکپارچگی داده</td>
-                                <td class="py-4 px-6 text-stone-500 text-sm">رزومه‌های ایستا</td>
-                                <td class="py-4 px-6 text-stone-900 font-medium bg-amber-50/30 text-sm">ردپای زنده</td>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-6 font-bold text-gray-800 text-sm">کیفیت داده</td>
+                                <td class="py-5 px-6 text-gray-500 text-sm">رزومه ایستا</td>
+                                <td class="py-5 px-6 text-gray-900 font-bold bg-violet-50/50 text-sm">ردپای زنده دیجیتال</td>
                             </tr>
-                            <tr class="hover:bg-stone-50 transition-colors">
-                                <td class="py-4 px-6 font-bold text-stone-900 text-sm">زمان استخدام</td>
-                                <td class="py-4 px-6 text-stone-500 text-sm">~۹۰ روز</td>
-                                <td class="py-4 px-6 text-stone-900 font-medium bg-amber-50/30 text-sm">~۲۱ روز</td>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="py-5 px-6 font-bold text-gray-800 text-sm">زمان استخدام</td>
+                                <td class="py-5 px-6 text-gray-500 text-sm">~۹۰ روز</td>
+                                <td class="py-5 px-6 text-gray-900 font-bold bg-violet-50/50 text-sm">~۲۱ روز</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Chart Container - Target for comparisonChart -->
-                <div class="bg-stone-50 rounded-lg p-6 border border-stone-200 shadow-inner">
-                    <h3 class="text-sm font-bold text-stone-700 text-center mb-4 uppercase tracking-wide">متوسط روزهای مورد نیاز برای استخدام</h3>
-                    <div class="chart-container" style="height: 300px;">
+                <!-- Chart -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-200 shadow-inner">
+                    <h3 class="text-sm font-bold text-gray-600 text-center mb-6 uppercase tracking-wide">مقایسه میانگین روزهای استخدام</h3>
+                    <div class="chart-container">
                         <canvas id="comparisonChart"></canvas>
                     </div>
                 </div>
@@ -449,93 +736,106 @@
         </div>
     </section>
 
-    <!-- SECTION 7: CTA -->
-    <section id="contact" class="py-24 bg-stone-900 text-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+    <!-- SECTION 8: CONTACT - Direct Phone & Address (UPDATED CONTENT AND STYLE) -->
+    <section id="contact" class="py-28 bg-gray-900 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         <div class="relative z-10 max-w-4xl mx-auto px-4">
-            <h2 class="text-4xl font-bold text-white mb-6 serif-font">استراتژی استعداد خود را کنترل کنید</h2>
-            <p class="text-xl text-stone-400 mb-10">
-                اجازه ندهید رقبا رشد شما را تعریف کنند. عملکرد منابع انسانی خود را با واقعیت بازار هماهنگ کنید.
+            
+            <!-- Updated Title and Subtitle -->
+            <h2 class="text-4xl lg:text-5xl font-extrabold text-white mb-6 serif-font leading-tight">آغاز یک همکاری تحول‌آفرین</h2>
+            <p class="text-xl text-gray-300 mb-12 font-medium max-w-3xl mx-auto">
+                تیم مشاوران ارشد ما آماده است تا استراتژی جذب نیروهای کلیدی شما را بررسی کند. **ارتباط مستقیم و بدون واسطه** را تجربه کنید.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="scrollToSection('contact')" class="bg-amber-600 text-white px-8 py-4 rounded-sm font-bold text-lg hover:bg-amber-700 transition-transform transform hover:-translate-y-1 shadow-xl">
-                    رزرو جلسه استراتژی
-                </button>
-                <button onclick="viewCaseStudies()" class="border border-stone-600 text-stone-300 px-8 py-4 rounded-sm font-medium hover:bg-stone-800 transition-colors">
-                    مشاهده مطالعات موردی
-                </button>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                
+                <!-- Phone Contact Card (Enhanced Style) -->
+                <div class="contact-item bg-gray-800 p-8 rounded-xl border-4 border-violet-700 shadow-2xl hover:border-cyan-500">
+                    <div class="relative z-10">
+                        <i class="fa-solid fa-phone-alt text-5xl text-cyan-400 mb-4 bg-gray-900 p-3 rounded-full shadow-lg"></i>
+                        <h3 class="text-2xl font-bold text-white mb-3 mt-2">تماس مستقیم با دپارتمان استراتژی</h3>
+                        <a href="tel:+9821XXXXXXXX" class="text-4xl font-extrabold text-violet-400 hover:text-cyan-400 transition-colors block tracking-widest" dir="ltr">+98 21 XXXX XXXX</a>
+                        <p class="text-sm text-gray-400 mt-3">دریافت مشاوره تخصصی (ساعات ۹ تا ۱۷)</p>
+                    </div>
+                </div>
+                
+                <!-- Address Contact Card (Enhanced Style) -->
+                <div class="contact-item bg-gray-800 p-8 rounded-xl border-4 border-violet-700 shadow-2xl hover:border-cyan-500">
+                    <div class="relative z-10">
+                        <i class="fa-solid fa-map-marker-alt text-5xl text-cyan-400 mb-4 bg-gray-900 p-3 rounded-full shadow-lg"></i>
+                        <h3 class="text-2xl font-bold text-white mb-3 mt-2">موقعیت و آدرس شرکت</h3>
+                        <p class="text-lg font-medium text-gray-200 leading-relaxed mb-4">
+                            تهران، خیابان ولیعصر، برج نکسوس، واحد ۲۰۲
+                        </p>
+                        <a href="mailto:info@nexusai.com" class="text-base text-violet-400 font-semibold hover:text-cyan-400 transition-colors border-b border-violet-400/50 hover:border-cyan-400 block max-w-xs mx-auto pb-1">
+                            ایمیل مستقیم: info@nexusai.com
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p class="mt-12 text-stone-500 text-sm">
-                مورد اعتماد شرکت‌های Fortune 500 و استارتاپ‌های با رشد بالا برای تضمین تخصصی‌ترین نقش‌هایشان.
+            
+            <p class="mt-20 text-gray-500 text-sm">
+                نکسوس هوش مصنوعی: آینده‌ی جذب نیروهای کلیدی در سازمان شما.
             </p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-stone-950 text-stone-500 py-12 border-t border-stone-800">
+    <footer class="bg-gray-950 text-gray-500 py-16 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-            <div class="mb-4 md:mb-0">
-                <span class="serif-font text-xl font-bold text-stone-300">نکسوس هوش مصنوعی استعداد</span>
-                <p class="text-xs mt-1">© ۲۰۲۵ نکسوس هوش مصنوعی استعداد. تمامی حقوق محفوظ است.</p>
+            <div class="mb-6 md:mb-0 text-center md:text-right">
+                <span class="serif-font text-2xl font-bold text-gray-200 tracking-tight block mb-2">نکسوس هوش مصنوعی</span>
+                <p class="text-xs text-gray-600">© ۲۰۲۵ نکسوس هوش مصنوعی استعداد. تمامی حقوق محفوظ است.</p>
             </div>
-            <div class="flex space-x-6 text-sm" dir="rtl">
-                <a href="#" class="hover:text-amber-500 transition-colors ml-6">سیاست حفظ حریم خصوصی</a>
-                <a href="#" class="hover:text-amber-500 transition-colors ml-6">شرایط خدمات</a>
-                <a href="#" class="hover:text-amber-500 transition-colors">تماس با ما</a>
+            <div class="flex space-x-8 text-sm" dir="rtl">
+                <a href="#" class="hover:text-cyan-500 transition-colors ml-8">حریم خصوصی</a>
+                <a href="#" class="hover:text-cyan-500 transition-colors ml-8">شرایط استفاده</a>
+                <a href="#" class="hover:text-cyan-500 transition-colors">تماس با ما</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript Logic (Core logic remains English, but displayed text and data are translated) -->
+    <!-- JavaScript Logic -->
     <script>
-        // --- Gemini API Setup ---
-        const API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";
-        const API_KEY = ""; // Canvas environment will provide the key at runtime
+        const state = { currentStep: 1 };
 
-        // --- State Management ---
-        const state = {
-            currentStep: 1,
-            isMenuOpen: false
-        };
-
-        // --- Data: Steps Content & Images (Translated) ---
         const stepData = {
             1: {
-                title: "تحلیل نیاز سازمانی",
-                content: "ما با ذینفعان اصلی شما همکاری می‌کنیم تا نه تنها شرح شغل، بلکه فرهنگ، زیرساخت فنی، اهداف استراتژیک و عمق خاص تجربه‌ای که برای موفقیت در این نقش لازم است را درک کنیم.",
+                title: "تحلیل نیاز سازمان",
+                badge: "گام ۱: شناخت عمیق",
+                content: "ما با ذینفعان اصلی شما همکاری می‌کنیم تا نه تنها شرح شغل، بلکه فرهنگ سازمانی، زیرساخت فنی و اهداف استراتژیک را به دقت ترسیم کنیم. این درک پایه و اساس جستجوی **هوشمند** ماست.",
                 icon: "📊",
-                image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1549490349-f65551c07172?auto=format&fit=crop&q=80&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Abstract lines/data
             },
             2: {
-                title: "شناسایی نامزدها مبتنی بر هوش مصنوعی",
-                content: "مدل‌های هوش مصنوعی ما میلیاردها نقطه داده را اسکن می‌کنند تا متخصصان با تطابق دقیق را شناسایی کنند، از جمله کاندیداهای کاملاً غیرفعال که در غیر این صورت نامرئی هستند. اینجاست که ما مزیت رقابتی پنهان شما را پیدا می‌کنیم.",
-                icon: "🤖",
-                image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&q=80&w=800"
+                title: "شناسایی پروفایل‌های مناسب با AI",
+                badge: "گام ۲: شکار دقیق با هوش مصنوعی",
+                content: "هوش مصنوعی ما **داده‌های واقعی افراد (مثل پروفایل لینکدین)** را تحلیل می‌کند تا تجربه‌های کاری و مهارت‌های واقعی را تشخیص دهد. ما کاندیداهایی را پیدا می‌کنیم که دقیقاً منطبق هستند و شانس بالایی برای جابه‌جایی دارند.",
+                icon: "🔍",
+                image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&q=80&w=800" // Data points / map
             },
             3: {
-                title: "استخراج مسیرهای ارتباط مستقیم",
-                content: "ما از فناوری پیشرفته سیگنال تماس و تحلیل نمودار ارتباطات استفاده می‌کنیم تا به صورت ایمن و هوشمند مسیرهای ارتباطی تأیید شده را استخراج کنیم و اطمینان حاصل کنیم که از واسطه‌ها عبور کرده و مستقیماً با فرد تصمیم‌گیرنده تماس می‌گیریم.",
+                title: "استخراج مسیرهای تماس اختصاصی",
+                badge: "گام ۳: دسترسی و ارتباط",
+                content: "ما به پیام‌های عمومی لینکدین بسنده نمی‌کنیم. سیستم ما مسیرهای ارتباطی تایید شده (شامل **ایمیل شخصی، تلفن یا معرفی از طریق کانکشن‌ها**) را استخراج می‌کند تا دسترسی مستقیم به کاندیدای هدف را ممکن سازد.",
                 icon: "🔓",
-                image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&q=80&w=800" // Connecting lines/network
             },
             4: {
-                title: "راه‌اندازی کمپین‌های ارتباطی سفارشی",
-                content: "مرحله نهایی ما شامل ارسال پیام‌های کاملاً شخصی‌سازی‌شده و آگاه به بافتار است که مستقیماً با مسیر شغلی کاندیدا صحبت می‌کند و شرکت شما را به عنوان یک شریک شغلی جذاب معرفی می‌کند.",
+                title: "ارسال کمپین‌های سفارش شده",
+                badge: "گام ۴: جذب با پیام‌رسانی شخصی",
+                content: "ما پیام‌های **کاملاً شخصی‌سازی شده‌ای** را از طرف شرکت شما یا نکسوس ارسال می‌کنیم که بر اساس سوابق فرد نوشته شده است. این رویکرد نرخ پاسخگویی را تا ۳ برابر افزایش می‌دهد و مکالمه‌ای حرفه‌ای را آغاز می‌کند.",
                 icon: "🚀",
-                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800"
+                image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800" // Abstract/Communication
             }
         };
 
-        // --- Initialization: Charts and initial Stepper load ---
         document.addEventListener('DOMContentLoaded', () => {
             initMarketChart();
             initComparisonChart();
-            setStep(1); // Load initial step content and image
+            setStep(1);
         });
 
-        // --- Core Functions ---
-
-        // 1. Custom Modal Functions (Replaces alert() and confirm())
         function showModal(title, message) {
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMessage').innerText = message;
@@ -546,7 +846,6 @@
             document.getElementById('customModal').style.display = 'none';
         }
 
-        // 2. Navigation Scroll Function
         function scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) {
@@ -554,265 +853,134 @@
             }
         }
         
-        // 3. Case Studies Button Action (Translated Message)
         function viewCaseStudies() {
             showModal(
                 "دسترسی به مطالعات موردی",
-                "با توجه به ماهیت این دمو، بخش مطالعات موردی به یک صفحه زنده متصل نیست. در یک محیط عملیاتی، این دکمه شما را به صفحه‌ای اختصاصی حاوی جزئیات موفقیت‌های مشتریان ما هدایت می‌کند."
+                "با توجه به ماهیت این دمو، بخش مطالعات موردی به یک صفحه زنده متصل نیست."
             );
         }
 
-        // 4. Process Stepper Logic
         function setStep(stepNum) {
             state.currentStep = stepNum;
             
-            // Update Buttons: Focus state and styling
+            // UI Update Loop for Buttons
             for(let i=1; i<=4; i++) {
                 const btn = document.getElementById(`btn-step-${i}`);
-                const label = btn.querySelector('span:nth-child(1)');
+                const icon = document.getElementById(`icon-step-${i}`);
+                const title = document.getElementById(`title-step-${i}`);
                 
+                // Clear all previous active classes
+                btn.classList.remove('step-active');
+
                 if (i === stepNum) {
-                    btn.classList.add('border-amber-500', 'bg-stone-50');
-                    btn.classList.remove('border-stone-200', 'bg-white');
-                    label.classList.remove('text-stone-400');
-                    label.classList.add('text-amber-600');
+                    // Active State
+                    btn.className = `w-full relative group flex items-center text-right p-5 rounded-xl transition-all duration-300 bg-white border border-violet-500 shadow-xl ring-2 ring-violet-500/30 step-active`;
+                    icon.className = "w-14 h-14 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg transition-colors";
+                    title.className = "font-extrabold text-gray-900 text-xl transition-colors";
                 } else {
-                    btn.classList.remove('border-amber-500', 'bg-stone-50');
-                    btn.classList.add('border-stone-200', 'bg-white');
-                    label.classList.add('text-stone-400');
-                    label.classList.remove('text-amber-600');
+                    // Inactive State
+                    btn.className = "w-full relative group flex items-center text-right p-5 rounded-xl transition-all duration-300 bg-gray-50 border border-transparent hover:bg-white hover:shadow-lg";
+                    icon.className = "w-14 h-14 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-2xl transition-colors group-hover:bg-cyan-100 group-hover:text-cyan-700";
+                    title.className = "font-extrabold text-gray-500 text-xl group-hover:text-gray-800 transition-colors";
                 }
             }
 
-            // Update Content and Image with fade-out/fade-in
+            // Update Content Area
             const display = document.getElementById('step-display');
             const bgNum = document.getElementById('step-number-bg');
             const imgEl = document.getElementById('step-image');
+            const badgeEl = document.getElementById('step-badge');
             
-            // Fade out
+            // Fade Out
             display.style.opacity = '0';
-            imgEl.style.opacity = '0.5';
             
             setTimeout(() => {
                 const data = stepData[stepNum];
                 
-                // Content updated (using Farsi numbers in template)
                 display.innerHTML = `
                     <div class="flex items-center mb-4">
-                        <span class="text-4xl ml-4">${data.icon}</span>
-                        <h3 class="text-2xl font-bold text-stone-900 serif-font">${data.title}</h3>
+                        <h3 class="text-3xl font-extrabold text-gray-900 serif-font">${data.title}</h3>
                     </div>
-                    <p class="text-stone-600 leading-relaxed text-lg">${data.content}</p>
+                    <p class="text-gray-700 leading-loose text-lg">${data.content}</p>
                 `;
-                bgNum.innerText = `۰${stepNum}`; // Using Farsi number for background
-                imgEl.src = data.image; // Update Image Source
+                // Format step number to always be two digits (01, 02, etc.)
+                bgNum.innerText = `۰${stepNum}`; 
+                badgeEl.innerText = data.badge;
+                imgEl.src = data.image;
                 
-                // Fade in
+                // Fade In
                 display.style.opacity = '1';
-                imgEl.style.opacity = '1';
             }, 200);
         }
 
-        // 5. Solution Card Highlight Interaction
-        function highlightCard(element) {
-            // Remove active style from all cards
-            document.querySelectorAll('#solution .group').forEach(el => {
-                el.classList.remove('border-amber-600', 'bg-stone-750');
-                el.classList.add('bg-stone-800');
-            });
-            // Add active style to the clicked card
-            element.classList.remove('bg-stone-800');
-            element.classList.add('border-amber-600', 'bg-stone-750'); 
-        }
-
-        // 6. Chart 1: Market Reality (Doughnut) - Translated Labels
         function initMarketChart() {
             const ctx = document.getElementById('marketChart').getContext('2d');
-            
-            // Set global chart defaults for aesthetics
-            Chart.defaults.font.family = "'Inter', sans-serif";
-            Chart.defaults.color = '#57534E';
+            Chart.defaults.font.family = "'Vazirmatn', sans-serif";
+            Chart.defaults.color = '#4B5563'; /* Gray 600 */
 
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['جویندگان کار فعال (پر ازدحام)', 'استعدادهای غیرفعال با ارزش (پنهان)'],
+                    labels: ['جویندگان فعال (پر ازدحام)', 'استعدادهای غیرفعال (پنهان)'],
                     datasets: [{
                         data: [20, 80],
-                        backgroundColor: [
-                            '#E7E5E4', // Stone 200 (Active)
-                            '#B45309'  // Amber 700 (Passive)
-                        ],
+                        backgroundColor: ['#E5E7EB', '#8B5CF6'], /* Gray 200, Violet 500 */
                         borderColor: '#FFFFFF',
-                        borderWidth: 2,
-                        hoverOffset: 4
+                        borderWidth: 3,
+                        hoverOffset: 10
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    cutout: '70%',
+                    cutout: '65%',
                     plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                padding: 20,
-                                usePointStyle: true,
-                                pointStyle: 'circle'
-                            }
-                        },
+                        legend: { position: 'bottom', labels: { padding: 20, usePointStyle: true, pointStyle: 'circle' } },
                         tooltip: {
-                            backgroundColor: '#1C1917',
-                            titleFont: { family: 'Inter', size: 14 },
-                            bodyFont: { size: 13 },
+                            backgroundColor: '#111827', /* Gray 900 */
+                            titleFont: { family: 'Vazirmatn', size: 14 },
+                            bodyFont: { size: 14 },
                             padding: 12,
-                            callbacks: {
-                                label: function(context) {
-                                    return ` ${context.label}: ${context.raw}% از بازار`;
-                                }
-                            }
+                            callbacks: { label: function(context) { return ` ${context.label}: ${context.raw}% از بازار`; } }
                         }
-                    }
+                    },
+                    animation: { animateScale: true, animateRotate: true }
                 }
             });
         }
 
-        // 7. Chart 2: Comparison (Bar) - Translated Labels
         function initComparisonChart() {
             const ctx = document.getElementById('comparisonChart').getContext('2d');
-            
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['آژانس سنتی', 'نکسوس هوش مصنوعی'],
+                    labels: ['سنتی', 'نکسوس AI'],
                     datasets: [{
                         label: 'روزهای استخدام',
                         data: [90, 21],
-                        backgroundColor: [
-                            '#A8A29E', // Stone 400
-                            '#B45309'  // Amber 700
-                        ],
-                        borderRadius: 4,
-                        barThickness: 50
+                        backgroundColor: ['#9CA3AF', '#8B5CF6'], /* Gray 400, Violet 500 */
+                        borderRadius: 6,
+                        barThickness: 60
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'روز'
-                            },
-                            grid: {
-                                color: '#E7E5E4'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                display: false
-                            }
-                        }
+                        y: { beginAtZero: true, title: { display: true, text: 'روز' }, grid: { color: '#E5E7EB' } }, /* Gray 200 */
+                        x: { grid: { display: false } }
                     },
                     plugins: {
-                        legend: {
-                            display: false
-                        },
+                        legend: { display: false },
                         tooltip: {
-                            backgroundColor: '#1C1917',
-                            titleFont: { family: 'Inter', size: 14 },
-                            callbacks: {
-                                label: function(context) {
-                                    return ` میانگین: ${context.raw} روز`;
-                                }
-                            }
+                            backgroundColor: '#111827',
+                            titleFont: { family: 'Vazirmatn', size: 14 },
+                            callbacks: { label: function(context) { return ` میانگین: ${context.raw} روز`; } }
                         }
                     }
                 }
             });
         }
-        
-        // --- Gemini LLM Function: Personalized Outreach Generation ---
-
-        async function generatePersonalizedOutreach() {
-            const jobDesc = document.getElementById('jobDesc').value.trim();
-            const candidateExperience = document.getElementById('candidateExperience').value.trim();
-            const outputDiv = document.getElementById('outreachOutput');
-            const outputText = document.getElementById('outputText');
-            const loadingIndicator = document.getElementById('loadingIndicator');
-            const generateBtn = document.getElementById('generateBtn');
-
-            // 1. Validation
-            if (!jobDesc || !candidateExperience) {
-                showModal("ورودی‌های ناقص", "لطفاً هم شرح نقش و هم تجربه کلیدی کاندیدا را وارد کنید.");
-                return;
-            }
-
-            // 2. UI Update (Loading State)
-            outputDiv.classList.add('hidden');
-            loadingIndicator.classList.remove('hidden');
-            generateBtn.disabled = true;
-            generateBtn.innerText = 'درحال تولید...';
-
-            // 3. Construct System Instruction and User Query
-            const systemPrompt = `You are an elite, highly professional executive headhunter. Your task is to craft a single, highly personalized, and persuasive opening paragraph for a cold outreach email. The paragraph must explicitly connect the candidate's specific background (Key Experience) to the critical, strategic needs of the role (Job Description). Use professional, high-level business language. The output MUST be in Farsi (Persian).`;
-            
-            const userQuery = `Job Description: "${jobDesc}". Candidate's Key Footprint/Experience: "${candidateExperience}". Generate the opening paragraph in Farsi.`;
-
-            const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] },
-            };
-            
-            // 4. API Call with Exponential Backoff
-            let responseText = "خطا در برقراری ارتباط با هوش مصنوعی. لطفاً دوباره تلاش کنید.";
-            const maxRetries = 5;
-            let retryDelay = 1000;
-
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(`${API_URL}?key=${API_KEY}`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                        responseText = text || "هوش مصنوعی نتوانست پیام مناسبی تولید کند. لطفاً ورودی‌ها را بررسی کنید.";
-                        break; // Success, exit loop
-                    } else if (response.status === 429) {
-                        // Rate limit hit, apply backoff
-                        await new Promise(resolve => setTimeout(resolve, retryDelay));
-                        retryDelay *= 2;
-                        if (i === maxRetries - 1) throw new Error("API rate limit exceeded after retries.");
-                    } else {
-                        // Other API error
-                        throw new Error(`API error: ${response.statusText}`);
-                    }
-                } catch (error) {
-                    console.error("Gemini API Error (Attempt " + (i + 1) + "):", error);
-                    responseText = "خطای غیرمنتظره‌ای رخ داد. لطفاً مطمئن شوید کلید API معتبر است یا بعداً دوباره تلاش کنید.";
-                    if (i === maxRetries - 1) break; // Final attempt failed
-                    await new Promise(resolve => setTimeout(resolve, retryDelay));
-                    retryDelay *= 2;
-                }
-            }
-
-            // 5. UI Update (Result State)
-            loadingIndicator.classList.add('hidden');
-            generateBtn.disabled = false;
-            generateBtn.innerText = '✨ تولید پیام شخصی‌سازی شده';
-            
-            outputDiv.classList.remove('hidden');
-            outputText.innerText = responseText;
-            scrollToSection('outreachOutput'); // Scroll to see the result
-        }
-
     </script>
 </body>
-
 </html>
